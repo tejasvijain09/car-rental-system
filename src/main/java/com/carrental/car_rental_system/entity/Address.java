@@ -1,40 +1,25 @@
 package com.carrental.car_rental_system.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
-//import lombok.Getter;
-//import lombok.Setter;
 
 @Embeddable
 @Data
-//@Getter
-//@Setter
 public class Address {
+
+    @NotBlank
+    @Column(nullable = false)
     private String city;
+
+    @NotBlank
+    @Column(nullable = false)
     private String state;
+
+    @NotBlank
+    @Pattern(regexp = "\\d{6}", message = "Pincode must be 6 digits")
+    @Column(nullable = false)
     private String pincode;
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getPincode() {
-        return pincode;
-    }
-
-    public void setPincode(String pincode) {
-        this.pincode = pincode;
-    }
 }

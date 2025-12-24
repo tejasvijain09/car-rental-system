@@ -19,44 +19,44 @@ public class VehicleService {
         this.repo = repo;
     }
 
-    // 1️⃣ Save vehicle
+    // Save vehicle
     @Transactional
     public Vehicle save(Vehicle vehicle) {
         return repo.save(vehicle);
     }
 
-    // 2️⃣ Get all vehicles
+    //  Get all vehicles
     @Transactional(readOnly = true)
     public List<Vehicle> findAll() {
         return repo.findAll();
     }
 
-    // 3️⃣ Delete by ID
+    //  Delete by ID
     @Transactional
     public void delete(Long id) {
         repo.deleteById(id);
     }
 
-    // 4️⃣ Delete all vehicles
+    //  Delete all vehicles
     @Transactional
     public void deleteAllVehicles() {
         repo.deleteAll();
     }
 
 
-    // 5️⃣ Available vehicles at a branch
+    // Available vehicles at a branch
     @Transactional(readOnly = true)
     public List<Vehicle> findAvailableByBranch(Long branchId) {
         return repo.findByBranchIdAndAvailableTrue(branchId);
     }
 
-    // 6️⃣ Vehicles by category
+    //  Vehicles by category
     @Transactional(readOnly = true)
     public List<Vehicle> findByCategory(VehicleCategory category) {
         return repo.findByCategory(category);
     }
 
-    // 7️⃣ Vehicles needing maintenance
+    //  Vehicles needing maintenance
     @Transactional(readOnly = true)
     public List<Vehicle> findVehiclesNeedingMaintenance(int mileage) {
         return repo.findByMileageGreaterThan(mileage);

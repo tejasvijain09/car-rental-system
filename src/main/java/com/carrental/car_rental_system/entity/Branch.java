@@ -2,6 +2,7 @@ package com.carrental.car_rental_system.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,32 +18,14 @@ public class Branch {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotBlank
+    @Column(nullable = false)
     private String city;
+
+    @NotBlank
+    @Column(nullable = false)
     private String address;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
     @OneToMany(mappedBy = "branch")
     @JsonIgnore
     private List<Vehicle> vehicles;

@@ -2,6 +2,7 @@ package com.carrental.car_rental_system.controller;
 
 import com.carrental.car_rental_system.entity.Customer;
 import com.carrental.car_rental_system.service.CustomerService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public Customer create(@RequestBody Customer customer) {
+    public Customer create( @Valid @RequestBody Customer customer) {
         return service.save(customer);
     }
 

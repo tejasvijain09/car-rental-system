@@ -2,6 +2,9 @@ package com.carrental.car_rental_system.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.Getter;
@@ -18,55 +21,21 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotBlank
+    @Column(nullable = false)
     private String name;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public @NotNull String getName() {
-        return name;
-    }
-
-    public void setName(@NotNull String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public List<Rental> getRentals() {
-        return rentals;
-    }
-
-    public void setRentals(List<Rental> rentals) {
-        this.rentals = rentals;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
+    @NotBlank
+    @Email
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Embedded
+    @NotNull
+    @Valid
     private Address address;
 
     @OneToMany(mappedBy = "customer")
-    @JsonIgnore
+    @JsonIgnore                    //DTO concept is better
     private List<Rental> rentals;
 }
