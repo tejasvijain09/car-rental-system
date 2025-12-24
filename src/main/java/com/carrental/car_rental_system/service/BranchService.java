@@ -29,4 +29,8 @@ public class BranchService {
     public void delete(Long id) {
         repo.deleteById(id);
     }
+    @Transactional
+    public void deleteAllBranches() {
+        repo.deleteAll();
+    }
 }

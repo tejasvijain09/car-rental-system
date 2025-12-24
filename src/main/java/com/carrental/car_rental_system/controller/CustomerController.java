@@ -1,30 +1,33 @@
 package com.carrental.car_rental_system.controller;
+
 import com.carrental.car_rental_system.entity.Customer;
-import com.carrental.car_rental_system.repository.CustomerRepository;
+import com.carrental.car_rental_system.service.CustomerService;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/customers")
 public class CustomerController {
-    private final CustomerRepository repo;
 
-    public CustomerController(CustomerRepository repo) {
-        this.repo = repo;
+    private final CustomerService service;
+
+    public CustomerController(CustomerService service) {
+        this.service = service;
     }
 
     @PostMapping
-    public Customer create(@RequestBody Customer c){
-        return repo.save(c);
+    public Customer create(@RequestBody Customer customer) {
+        return service.save(customer);
     }
 
     @GetMapping
     public List<Customer> getAll() {
-        return repo.findAll();
+        return service.findAll();
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        repo.deleteById(id);
+        service.delete(id);
     }
 }
